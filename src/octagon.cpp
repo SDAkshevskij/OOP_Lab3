@@ -24,7 +24,14 @@ std::string Octagon::to_string() const {
 }
 
 double Octagon::calc_area() {
-    return (double)(*this);
+    double sum = 0;
+
+    for (int i = 0; i < pointsAmo; i++) {
+        sum += points[i].getX() * points[(i + 1) % pointsAmo].getY() - points[(i + 1) % pointsAmo].getX() * points[i].getY();
+    }
+    sum /= 2;
+
+    return abs(sum);
 }
 
 void Octagon::setPoint(int index, Point point) {
@@ -42,17 +49,15 @@ std::istream& operator>>(std::istream& is, Octagon& octagon) {
 }
 
 Octagon& Octagon::operator=(Octagon& other) {
-    Octagon::operator=(other);
+    Figure::operator=(other);
     return *this;
 }
 
-Octagon::operator double() {
-    double sum = 0;
+bool Octagon::operator==(Octagon& other) {
+    return Figure::operator==(other);
+}
 
-    for (int i = 0; i < pointsAmo; i++) {
-        sum += points[i].getX() * points[(i + 1) % pointsAmo].getY() - points[(i + 1) % pointsAmo].getX() * points[i].getY();
-    }
-    sum /= 2;
-    return abs(sum);
+Octagon::operator double() {
+    return this->calc_area();
 }
 

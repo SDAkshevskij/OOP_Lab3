@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.15)
 
 set(CMAKE_CXX_COMPILER "/usr/bin/g++-13")
 
+set(CMAKE_BUILD_TYPE Debug)
+
 project(Project LANGUAGES CXX)
 
 add_library(figure src/figure.cpp src/triangle.cpp src/square.cpp src/octagon.cpp src/figure_array.cpp)

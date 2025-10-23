@@ -49,7 +49,7 @@ class Point {
             return is;
         }
         friend std::ostream& operator<<(std::ostream& os, Point& point) {
-            os << "x: " << std::to_string(point.x) << " y: " << std::to_string(point.y);
+            os << point.to_string();
             return os;
         }
     private:

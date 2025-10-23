@@ -13,18 +13,20 @@ class Figure {
         Figure(Figure&& other) noexcept;
         virtual ~Figure() noexcept;
 
-        std::string to_string() const;
+        virtual std::string to_string() const;
         std::istream& read_from_stream(std::istream &is);
         Point calc_the_center_of_rotation();
-        double calc_area();
+        virtual double calc_area() = 0;
 
         void setPoint(int index, Point point);
 
         friend std::ostream& operator<<(std::ostream& os, const Figure& figure);
         friend std::istream& operator>>(std::istream& is, Figure& figure);
-        
+
         bool operator==(const Figure& other) const; 
-        Figure& operator=(const Figure& other);
+        virtual Figure& operator=(const Figure& other);
+
+        operator double();
 
 
         

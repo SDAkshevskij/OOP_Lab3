@@ -14,12 +14,11 @@ int main(int argc, char** argv){
         Point(7, 4), Point(6,6)};
 
     Square sq = {Point(1, 1), Point(1, 2), Point(2, 2), Point(2, 1)};
-    cout << sq << endl;
     Square sq2 = {Point(1, 2), Point(2, 1), Point(2, 2), Point(1, 1)};
     sq = sq2;
 
     FigureArray figArr{&oct, &sq};
+    cout << figArr;
 
-
-    cout << (sq == sq2);
+    
 }

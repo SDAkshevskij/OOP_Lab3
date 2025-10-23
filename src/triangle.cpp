@@ -20,7 +20,17 @@ std::string Triangle::to_string() const {
 }
 
 double Triangle::calc_area() {
-    return (double)(*this);
+        Point pa = points[0];
+        Point pb = points[1];
+        Point pc = points[2];
+
+        double a = pb.getDistTo(pc);
+        double b = pa.getDistTo(pc);
+        double c = pa.getDistTo(pb);
+
+        double half_perimetr = (a + b + c) / 2;
+
+        return sqrt(half_perimetr * (half_perimetr - a) * (half_perimetr - b) * (half_perimetr - c));
 }
 
 std::istream& operator>>(std::istream& is, Triangle& triangle) {
@@ -37,16 +47,10 @@ Triangle& Triangle::operator=(Triangle& other) {
     return *this;
 }
 
+bool Triangle::operator==(Triangle& other) {
+    return Figure::operator==(other);
+}
+
 Triangle::operator double() {
-    Point pa = points[0];
-    Point pb = points[1];
-    Point pc = points[2];
-
-    double a = pb.getDistTo(pc);
-    double b = pa.getDistTo(pc);
-    double c = pa.getDistTo(pb);
-
-    double half_perimetr = (a + b + c) / 2;
-
-    return sqrt(half_perimetr * (half_perimetr - a) * (half_perimetr - b) * (half_perimetr - c));
+    return this->calc_area();
 }

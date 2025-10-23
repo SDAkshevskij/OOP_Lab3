@@ -76,6 +76,8 @@ std::istream& operator>>(std::istream& is, Figure& figure) {
 }
 
 bool Figure::operator==(const Figure& other) const {
+    if (this == &other) return true;
+    
     if(pointsAmo != other.pointsAmo) {
         return false;
     }
@@ -119,16 +121,6 @@ void Figure::sortPoints() {
     }
 }
 
-double Figure::calc_area() {
-    double sum = 0;
-
-    for (int i = 0; i < pointsAmo; i++) {
-        sum += points[i].getX() * points[(i + 1) % pointsAmo].getY() - points[(i + 1) % pointsAmo].getX() * points[i].getY();
-    }
-    sum /= 2;
-    return abs(sum);
-}
-
 Point Figure::getCenterPoint() {
     double xSum = 0;
     double ySum = 0;
@@ -139,4 +131,8 @@ Point Figure::getCenterPoint() {
     }
 
     return Point(xSum / pointsAmo, ySum / pointsAmo);
+}
+
+Figure::operator double() {
+    return this->calc_area();
 }

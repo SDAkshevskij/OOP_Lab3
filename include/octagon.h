@@ -8,12 +8,13 @@ class Octagon : public Figure {
         Octagon(const Octagon& other);
         Octagon(Octagon&& other) noexcept;
 
-        std::string to_string() const;
+        std::string to_string() const override;
         void setPoint(int index, Point point);
-        double calc_area();
+        double calc_area() override;
 
         friend std::istream& operator>>(std::istream& is, Octagon& square);
         Octagon& operator=(Octagon& other);
+        bool operator==(Octagon& other);
 
         operator double();
     

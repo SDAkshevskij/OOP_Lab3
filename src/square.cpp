@@ -21,7 +21,11 @@ std::string Square::to_string() const {
 }
 
 double Square::calc_area() {
-    return (double)(*this);
+    Point p1 = points[0];
+    Point p2 = points[1];
+
+    double sideLen = std::max(abs(p1.getX() - p2.getX()), abs(p1.getY() - p2.getY()));
+    return sideLen * sideLen; 
 }
 
 
@@ -40,10 +44,11 @@ Square& Square::operator=(Square& other) {
     return *this;
 }
 
-Square::operator double() {
-    Point p1 = points[0];
-    Point p2 = points[1];
+bool Square::operator==(Square &other) {
+    return Figure::operator==(other);
+}
 
-    double sideLen = std::max(abs(p1.getX() - p2.getX()), abs(p1.getY() - p2.getY()));
-    return sideLen * sideLen; 
+
+Square::operator double() {
+    return this->calc_area();
 }

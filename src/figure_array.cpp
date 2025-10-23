@@ -36,7 +36,11 @@ FigureArray::FigureArray(FigureArray&& other) noexcept
 
 
 std::ostream& operator<<(std::ostream& os, const FigureArray& money){
-
+    for (int i = 0; i < money.array.size(); i++) {
+        os << *(money.array[i]) << std::endl;
+        os << "Center: " << money.array[i]->calc_the_center_of_rotation().to_string() << std::endl;
+        os << "Area: " << money.array[i]->calc_area() << std::endl;
+    }
     return os;
 }
 

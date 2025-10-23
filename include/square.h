@@ -11,11 +11,12 @@ class Square : public Figure{
         Square(const Square& other);
         Square(Square&& other) noexcept;
 
-        std::string to_string() const;
-        double calc_area();
+        std::string to_string() const override;
+        double calc_area() override;
 
         friend std::istream& operator>>(std::istream& is, Square& square);
         Square& operator=(Square& other);
+        bool operator==(Square& other);
 
         operator double();
 };
