@@ -1,8 +1,6 @@
 #include "../include/triangle.h"
-
 Triangle::Triangle()
     : Figure(3) {}
-
 Triangle::Triangle(const std::initializer_list<Point> &t): Figure(t){
     if(t.size() != 3) {
         throw new std::length_error("Expected 3 points!");
@@ -10,7 +8,6 @@ Triangle::Triangle(const std::initializer_list<Point> &t): Figure(t){
 }
 Triangle::Triangle(const Triangle& other) : Figure(other) {};
 Triangle::Triangle(Triangle&& other) noexcept : Figure(other) {};
-
 std::string Triangle::to_string() const {
     std::string res = "Triangle: ";
     for (int i = 0; i < pointsAmo; i++) {
@@ -18,21 +15,16 @@ std::string Triangle::to_string() const {
     }
     return res;
 }
-
 double Triangle::calc_area() {
         Point pa = points[0];
         Point pb = points[1];
         Point pc = points[2];
-
         double a = pb.getDistTo(pc);
         double b = pa.getDistTo(pc);
         double c = pa.getDistTo(pb);
-
         double half_perimetr = (a + b + c) / 2;
-
         return sqrt(half_perimetr * (half_perimetr - a) * (half_perimetr - b) * (half_perimetr - c));
 }
-
 std::istream& operator>>(std::istream& is, Triangle& triangle) {
     for (int i = 0; i < 3; i++) {
         Point p;
@@ -41,16 +33,13 @@ std::istream& operator>>(std::istream& is, Triangle& triangle) {
     }
     return is;
 }
-
 Triangle& Triangle::operator=(Triangle& other) {
     Figure::operator=(other);
     return *this;
 }
-
 bool Triangle::operator==(Triangle& other) {
     return Figure::operator==(other);
 }
-
 Triangle::operator double() {
     return this->calc_area();
 }
